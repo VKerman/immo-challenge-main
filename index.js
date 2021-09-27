@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
-const sanitizeHtml = require('sanitize-html');
 
 const PAGE_URL =
   "https://www.hansimmo.be/appartement-te-koop-in-borgerhout/10161";
@@ -32,10 +31,12 @@ const main = async () => {
       throw err;
     }
   });
-
-  console.log(items);
+  browser.close()
 
   return items;
 };
 
-main().then((data) => console.log(data));
+main().then((data) => {
+  console.log(data);
+  process.exit();
+});
